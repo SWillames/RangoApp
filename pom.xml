@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.swsoftware</groupId>
-	<artifactId>RangoApp</artifactId>
+	<artifactId>rangoapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>RangoApp</name>
 	<description>Demo project for Spring Boot</description>
