@@ -1,4 +1,4 @@
-package br.com.swsoftware.RangoApp;
+package br.com.swsoftware.rangoapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

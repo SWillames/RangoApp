@@ -1,4 +1,4 @@
-package br.com.swsoftware.RangoApp;
+package br.com.swsoftware.rangoapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
