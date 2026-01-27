@@ -1,5 +1,7 @@
 package br.com.swsoftware.rangoapp.service.impl;
 
+import br.com.swsoftware.rangoapp.application.dto.UserUpdateDTO;
+import br.com.swsoftware.rangoapp.application.mapper.UserMapper;
 import br.com.swsoftware.rangoapp.persistence.User;
 import br.com.swsoftware.rangoapp.repository.UserRepository;
 import br.com.swsoftware.rangoapp.service.UserService;
@@ -13,9 +15,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -27,13 +31,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long id, User updatedUser) {
+    public User update(Long id, UserUpdateDTO updatedUser) {
         User existingUser = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
 
-        existingUser.setName(updatedUser.getName());
-        existingUser.setEmail(updatedUser.getEmail());
-        existingUser.setAddress(updatedUser.getAddress());
-        existingUser.setUserType(updatedUser.getUserType());
+        userMapper.updateEntity(updatedUser, existingUser);
 
         return userRepository.save(existingUser);
     }

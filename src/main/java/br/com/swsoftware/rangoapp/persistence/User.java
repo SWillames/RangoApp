@@ -10,7 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
+@Table(name = "users",  uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
