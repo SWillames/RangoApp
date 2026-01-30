@@ -5,6 +5,7 @@ import br.com.swsoftware.rangoapp.application.dto.UserResponseDTO;
 import br.com.swsoftware.rangoapp.application.mapper.UserMapper;
 import br.com.swsoftware.rangoapp.persistence.User;
 import br.com.swsoftware.rangoapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserResponseDTO> login(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<UserResponseDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
 
         User user = userService.validateLogin(loginDTO.getLogin(), loginDTO.getPassword());
 

@@ -7,6 +7,7 @@ import br.com.swsoftware.rangoapp.application.dto.UserUpdateDTO;
 import br.com.swsoftware.rangoapp.application.mapper.UserMapper;
 import br.com.swsoftware.rangoapp.persistence.User;
 import br.com.swsoftware.rangoapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,20 +28,20 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserCreateDTO userDto) {
+    public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserCreateDTO userDto) {
         User user = userMapper.toEntity(userDto);
         User savedUser = userService.create(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toResponse(savedUser));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTO userDto) {
+    public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO userDto) {
         User updatedUser = userService.update(id, userDto);
         return ResponseEntity.ok(userMapper.toResponse(updatedUser));
     }
 
     @PatchMapping("{id}/password")
-    public ResponseEntity<Void> changePassword(@PathVariable Long id, @RequestBody UserPasswordDTO dto){
+    public ResponseEntity<Void> changePassword(@PathVariable Long id, @Valid @RequestBody UserPasswordDTO dto){
         userService.changePassword(id, dto.getNewPassword());
 
         return ResponseEntity.noContent().build();

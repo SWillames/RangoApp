@@ -1,5 +1,7 @@
 package br.com.swsoftware.rangoapp.application.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,5 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserPasswordDTO {
 
+    @NotBlank(message = "Nova senha é obrigatória")
+    @Size(min = 6, message = "Senha deve ter no mínimo 6 caracteres")
     private String newPassword;
 }
