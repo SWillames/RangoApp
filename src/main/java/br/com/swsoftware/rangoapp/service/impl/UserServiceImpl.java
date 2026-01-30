@@ -2,6 +2,8 @@ package br.com.swsoftware.rangoapp.service.impl;
 
 import br.com.swsoftware.rangoapp.application.dto.UserUpdateDTO;
 import br.com.swsoftware.rangoapp.application.mapper.UserMapper;
+import br.com.swsoftware.rangoapp.exception.BusinessException;
+import br.com.swsoftware.rangoapp.exception.ResourceNotFoundException;
 import br.com.swsoftware.rangoapp.persistence.User;
 import br.com.swsoftware.rangoapp.repository.UserRepository;
 import br.com.swsoftware.rangoapp.service.UserService;
@@ -25,14 +27,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new IllegalArgumentException("Email já cadastrado");
+            throw new BusinessException("Email já cadastrado");
         }
         return userRepository.save(user);
     }
 
     @Override
     public User update(Long id, UserUpdateDTO updatedUser) {
-        User existingUser = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
         userMapper.updateEntity(updatedUser, existingUser);
 
@@ -41,7 +43,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changePassword(Long id, String newPassword) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+
+        if (newPassword == null || newPassword.isBlank()) {
+            throw new BusinessException("Nova senha não pode ser vazia");
+        }
 
         user.setPassword(newPassword);
         userRepository.save(user);
@@ -49,10 +55,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User validateLogin(String login, String password) {
-        User user = userRepository.findByLogin(login).orElseThrow(() -> new IllegalArgumentException("Login inválido"));
+        User user = userRepository.findByLogin(login).orElseThrow(() -> new BusinessException("Login ou senha inválidos"));
 
         if (!user.getPassword().equals(password)) {
-            throw new IllegalArgumentException("Senha inválida");
+            throw new BusinessException("Login ou Senha inválidos");
         }
 
         return user;
