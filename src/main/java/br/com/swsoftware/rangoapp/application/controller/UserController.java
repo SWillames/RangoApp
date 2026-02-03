@@ -1,11 +1,11 @@
-package br.com.swsoftware.rangoapp.application;
+package br.com.swsoftware.rangoapp.application.controller;
 
 import br.com.swsoftware.rangoapp.application.dto.UserCreateDTO;
 import br.com.swsoftware.rangoapp.application.dto.UserPasswordDTO;
 import br.com.swsoftware.rangoapp.application.dto.UserResponseDTO;
 import br.com.swsoftware.rangoapp.application.dto.UserUpdateDTO;
 import br.com.swsoftware.rangoapp.application.mapper.UserMapper;
-import br.com.swsoftware.rangoapp.persistence.User;
+import br.com.swsoftware.rangoapp.domain.model.User;
 import br.com.swsoftware.rangoapp.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

@@ -3,7 +3,7 @@ package br.com.swsoftware.rangoapp.application.mapper;
 import br.com.swsoftware.rangoapp.application.dto.UserCreateDTO;
 import br.com.swsoftware.rangoapp.application.dto.UserResponseDTO;
 import br.com.swsoftware.rangoapp.application.dto.UserUpdateDTO;
-import br.com.swsoftware.rangoapp.persistence.User;
+import br.com.swsoftware.rangoapp.domain.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

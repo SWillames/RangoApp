@@ -1,4 +1,4 @@
-package br.com.swsoftware.rangoapp.handler;
+package br.com.swsoftware.rangoapp.application.handler;
 
 import br.com.swsoftware.rangoapp.exception.BusinessException;
 import br.com.swsoftware.rangoapp.exception.ResourceNotFoundException;

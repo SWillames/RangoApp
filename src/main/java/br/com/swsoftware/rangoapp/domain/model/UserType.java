@@ -1,4 +1,4 @@
-package br.com.swsoftware.rangoapp.persistence;
+package br.com.swsoftware.rangoapp.domain.model;
 
 public enum UserType {
     CLIENT,
