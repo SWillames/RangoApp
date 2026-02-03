@@ -1,6 +1,6 @@
-package br.com.swsoftware.rangoapp.repository;
+package br.com.swsoftware.rangoapp.domain.repository;
 
-import br.com.swsoftware.rangoapp.persistence.User;
+import br.com.swsoftware.rangoapp.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

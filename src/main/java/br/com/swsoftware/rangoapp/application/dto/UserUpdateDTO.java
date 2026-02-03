@@ -1,6 +1,6 @@
 package br.com.swsoftware.rangoapp.application.dto;
 
-import br.com.swsoftware.rangoapp.persistence.UserType;
+import br.com.swsoftware.rangoapp.domain.model.UserType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
