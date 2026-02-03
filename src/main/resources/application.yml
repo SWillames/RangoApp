@@ -2,17 +2,17 @@ spring:
  application:
   name: RangoApp
  datasource:
-   url: jdbc:postgresql://localhost:5432/tech_challenge
-   username: rm_user
-   password: rm_pass
+   url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/tech_challenge}
+   username: ${SPRING_DATASOURCE_USERNAME:rm_user}
+   password: ${SPRING_DATASOURCE_PASSWORD:rm_pass}
    driver-class-name: org.postgresql.Driver
 
  jpa:
    hibernate:
-     ddl-auto: update
-     show-sql: true
-     properties:
+     ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+   show-sql: true
+   properties:
        hibernate:
          format_sql: true
-     database-platform: org.hibernate.dialect.PostgreSQLDialect
+   database-platform: org.hibernate.dialect.PostgreSQLDialect
 
