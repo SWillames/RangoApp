@@ -23,7 +23,7 @@ if ! docker info > /dev/null 2>&1; then
 fi
 
 # Sobe os containers em background
-docker-compose up -d --build > /dev/null 2>&1 &
+docker compose up -d --build
 PID=$!
 
 # Mostra o spinner enquanto o docker-compose roda
@@ -31,6 +31,9 @@ spinner $PID
 
 # Limpa a linha
 printf "\r"
-
-echo "[✔] Aplicação iniciada com sucesso!"
-echo "Swagger disponível em: http://localhost:8080/swagger-ui.html"
+if [ $? -eq 0 ]; then
+  echo "[✔] Aplicação iniciada com sucesso!"
+  echo "Swagger disponível em: http://localhost:8080/swagger-ui.html"
+else
+  echo "❌ Erro ao iniciar a aplicação."
+fi

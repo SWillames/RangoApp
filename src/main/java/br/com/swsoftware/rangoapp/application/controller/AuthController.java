@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(
+        name = "Autenticação",
+        description = "Endpoint responsável pela autenticação de usuários"
+)
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
@@ -25,10 +29,6 @@ public class AuthController {
         this.userMapper = userMapper;
     }
 
-    @Tag(
-        name = "Autenticação",
-        description = "Endpoint responsável pela autenticação de usuários"
-    )
     @PostMapping("/login")
     public ResponseEntity<UserResponseDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
 
