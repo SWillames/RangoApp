@@ -70,7 +70,7 @@ public class UserController {
         content = @Content(schema = @Schema(implementation = ProblemDetail.class))
     )
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO userDto) {
+    public ResponseEntity<UserResponseDTO> updateUser(@PathVariable("id") Long id, @Valid @RequestBody UserUpdateDTO userDto) {
         User updatedUser = userService.update(id, userDto);
         return ResponseEntity.ok(userMapper.toResponse(updatedUser));
     }
@@ -91,7 +91,7 @@ public class UserController {
         content = @Content(schema = @Schema(implementation = ProblemDetail.class))
     )
     @PatchMapping("{id}/password")
-    public ResponseEntity<Void> changePassword(@PathVariable Long id, @Valid @RequestBody UserPasswordDTO dto){
+    public ResponseEntity<Void> changePassword(@PathVariable("id") Long id, @Valid @RequestBody UserPasswordDTO dto){
         userService.changePassword(id, dto.getNewPassword());
 
         return ResponseEntity.noContent().build();
@@ -103,7 +103,7 @@ public class UserController {
     )
     @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso")
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> findByName(@RequestParam String name) {
+    public ResponseEntity<List<UserResponseDTO>> findByName(@RequestParam(required = false) String name) {
         List<UserResponseDTO> users = userService.findByName(name)
                 .stream()
                 .map(userMapper::toResponse)

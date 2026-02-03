@@ -17,7 +17,7 @@ spinner() {
 }
 
 # Executa docker-compose down em background
-docker-compose down > /dev/null 2>&1 &
+docker compose down > /dev/null 2>&1 &
 PID=$!
 
 # Mostra o spinner enquanto o comando executa
